@@ -1,61 +1,63 @@
+import java.util.Set;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
-import java.util.Set;
+
+import Dev.Dev;
+import Course.Course;
+import Content.Content;
+import Bootcamp.Bootcamp;
+import Mentoring.Mentoring;
 
 public class App {
     public static void main(String[] args) throws Exception {
 
-        Curso curso1 = new Curso("curso java", "descricao curso java", 8);
-        Curso curso2 = new Curso("curso javascript", "descricao curso javascript", 4);
+        Course curso1 = new Course("java course", "java course description", 8);
+        Course curso2 = new Course("javascript course", "javascript course description", 4);
 
-        curso1.setData(LocalDate.now());
-        curso2.setData(LocalDate.now());
+        curso1.setDate(LocalDate.now());
+        curso2.setDate(LocalDate.now());
 
-        Mentoria mentoria1 = new Mentoria("mentoria java", "descrição mentoria java", 10);
-        Mentoria mentoria2 = new Mentoria("mentoria javascript", "descrição mentoria javascript", 8);
+        Mentoring mentoria1 = new Mentoring("mentoring java", "java mentorship description", 10);
+        Mentoring mentoria2 = new Mentoring("mentoring javascript", "javascript mentorship description", 8);
 
-        mentoria1.setData(LocalDate.now());
-        mentoria2.setData(LocalDate.now());
+        mentoria1.setDate(LocalDate.now());
+        mentoria2.setDate(LocalDate.now());
 
-        Bootcamp bootcamp = new Bootcamp("bootcamp java", "descrição bootcamp java");
-        // bootcamp.getConteudos().add(curso1);
-        // bootcamp.getConteudos().add(curso2);
-        // bootcamp.getConteudos().add(mentoria1);
-        // bootcamp.getConteudos().add(mentoria2);
+        Bootcamp bootcamp = new Bootcamp("bootcamp java", "java bootcamp description");
 
-        Set<Conteudo> conteudos = new LinkedHashSet<>();
+        Set<Content> conteudos = new LinkedHashSet<>();
         conteudos.add(curso1);
         conteudos.add(curso2);
         conteudos.add(mentoria1);
         conteudos.add(mentoria2);
 
-        bootcamp.getConteudos().addAll(conteudos);
-        System.out.println(bootcamp.getConteudos());
+        bootcamp.getContents().addAll(conteudos);
+        System.out.println(bootcamp.getContents());
 
         Dev lucas = new Dev("Lucas");
         Dev rafa = new Dev("Rafa");
 
-        System.out.println("lucas conteúdos: " + lucas.getConteudosIncritos());
-        lucas.inscreverBootcamp(bootcamp);
-        rafa.inscreverBootcamp(bootcamp);
+        System.out.println("lucas content: " + lucas.getSubscribedContent());
+        lucas.enrollBootcamp(bootcamp);
+        rafa.enrollBootcamp(bootcamp);
 
-        System.out.println("lucas conteúdos: " + lucas.getConteudosIncritos());
-        System.out.println("lucas conteúdos: " + lucas.getConteudosConcluidos());
+        System.out.println("lucas content: " + lucas.getSubscribedContent());
+        System.out.println("lucas content: " + lucas.getFinishedContents());
 
-        lucas.progredir();
+        lucas.toProgress();
 
-        System.out.println("lucas conteúdos: " + lucas.getConteudosIncritos());
-        System.out.println("lucas conteúdos: " + lucas.getConteudosConcluidos());
+        System.out.println("lucas content: " + lucas.getSubscribedContent());
+        System.out.println("lucas content: " + lucas.getFinishedContents());
 
-        System.out.println("xp lucas: " + lucas.calcularTotalXp());
-        System.out.println("xp rafa: " + rafa.calcularTotalXp());
+        System.out.println("xp lucas: " + lucas.calculateTotalXp());
+        System.out.println("xp rafa: " + rafa.calculateTotalXp());
 
-        lucas.progredir();
-        System.out.println("xp lucas: " + lucas.calcularTotalXp());
+        lucas.toProgress();
+        System.out.println("xp lucas: " + lucas.calculateTotalXp());
 
-        lucas.progredir();
-        lucas.progredir();
-        System.out.println("xp lucas: " + lucas.calcularTotalXp());
-        lucas.progredir();
+        lucas.toProgress();
+        lucas.toProgress();
+        System.out.println("xp lucas: " + lucas.calculateTotalXp());
+        lucas.toProgress();
     }
 }
